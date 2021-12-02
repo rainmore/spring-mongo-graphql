@@ -1,0 +1,69 @@
+apply plugin: 'com.github.maiflai.scalatest'
+
+dependencies {
+    // Testing
+    testImplementation group: 'com.devskiller', name: 'jfairy', version: '0.6.4'
+
+    testImplementation group: 'org.scalactic',     name: sclArt('scalactic'),           version: project.ext.get('scalatest.version')
+    testImplementation group: 'org.scalatest',     name: sclArt('scalatest'),           version: project.ext.get('scalactic.version')
+    testImplementation group: 'org.scalatestplus', name: sclArt('junit-4-12'),          version: project.ext.get('scalatest.plus.junit.version')
+
+    testImplementation group: 'org.scalatestplus', name: sclArt('mockito-3-4'), version: project.ext.get('scalatest.plus.version')
+    // required by the scalatest gradle plugin
+    // Please do not upgrade these versions unless scalatest update flexmark-all version
+    testRuntimeOnly group: 'com.vladsch.flexmark',   name: 'flexmark-all',           version: project.ext.get('flexmark.scalaTestVersion')
+
+}
+
+test {
+    // force run task all the time
+    outputs.upToDateWhen { false }
+    dependsOn 'cleanTest'
+
+    // Fail the 'test' task on the first test failure
+    failFast = true
+
+    // Show test results.
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
+
+tasks.register("unitTest", Test) {
+    // force run task all the time
+    outputs.upToDateWhen { false }
+    dependsOn 'cleanTest'
+
+    // Fail the 'test' task on the first test failure
+    failFast = true
+
+    tags {
+        exclude ('au.com.wytn.centus.tags.DbTest',
+                'au.com.wytn.centus.tags.MailServerTest',
+                'au.com.wytn.centus.tags.FtpServerTest',
+                'au.com.wytn.centus.tags.VPNRequired')
+    }
+
+    // Show test results.
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
+
+tasks.register("dbTest", Test) {
+    // force run task all the time
+    outputs.upToDateWhen { false }
+    dependsOn 'cleanTest'
+
+    tags {
+        include 'au.com.wytn.centus.tags.DbTest'
+        exclude ('au.com.wytn.centus.tags.MailServerTest',
+                'au.com.wytn.centus.tags.FtpServerTest',
+                'au.com.wytn.centus.tags.VPNRequired')
+    }
+
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
+

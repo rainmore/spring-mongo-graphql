@@ -1,0 +1,54 @@
+plugins {
+    id 'org.springframework.boot'
+
+    id 'com.github.hauner.jarTest'                   apply false
+    id 'com.bmuschko.docker-spring-boot-application' apply false
+    id 'com.github.maiflai.scalatest'                apply false
+    id 'org.ajoberstar.grgit'
+
+    id 'application'
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+group = 'au.com.rainmore.centus'
+version = '1.2.0'
+description = 'Centus - Spring Mongodb GraphQL'
+
+application {
+    mainClass.set([group, 'Application'].join('.'))
+}
+
+ext {
+    imageName = 'spring-mongo-graphql'
+}
+
+apply plugin: 'idea'
+apply plugin: 'application'
+
+apply from: 'project/utils.gradle'
+apply from: 'project/assemble.gradle'
+apply from: 'project/scala.gradle'
+apply from: 'project/misc.gradle'
+apply from: 'project/logging.gradle'
+apply from: 'project/jackson.gradle'
+apply from: 'project/mongodb.gradle'
+apply from: 'project/spring.gradle'
+apply from: 'project/thymeleaf.gradle'
+apply from: 'project/tests.gradle'
+apply from: 'project/docker.gradle'
+
+idea {
+    module {
+        // fix IDEA out folder
+        outputDir file('build/classes/scala/main')
+        testOutputDir file('build/classes/scala/test')
+        resourceDirs += file('build/resources/main')
+        testResourceDirs += file('build/resources/test')
+    }
+}

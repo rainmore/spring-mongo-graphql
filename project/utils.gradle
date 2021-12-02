@@ -1,0 +1,46 @@
+ext {
+    isReleaseSnapshotVersion = { version ->
+        return version != null && version.endsWith('-SNAPSHOT')
+    }
+
+    getVcsVersion = {
+        return ext.grgit.describe()
+    }
+
+    composeReleaseVersion = {
+        def branchName = grgit.branch.current().name
+        def currentVersion = grgit.describe()
+        if (branchName == 'master') {
+            return project.version
+        }
+        else if (isReleaseSnapshotVersion(currentVersion)) { // no further commits
+            return currentVersion
+        }
+        else {
+            return [project.version, branchName.split('/').getAt(-1), 'SNAPSHOT'].join('-')
+        }
+    }
+
+}
+
+task tagVersion {
+    group 'release'
+    description = 'Tags the current head with the project\'s version.'
+
+    doLast {
+        def version = project.ext.composeReleaseVersion()
+        if (grgit.tag.list().any {it.fullName.endsWith(version)}) {
+            throw new IllegalArgumentException("Error: tag exists '$version'")
+        }
+
+        grgit.tag.add {
+            name = version
+            force = true
+            annotate = true
+            message = "Release of v${version}"
+        }
+
+        project.logger.lifecycle("Successfully released v${version}")
+    }
+}
+

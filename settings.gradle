@@ -1,0 +1,21 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    plugins {
+        id 'org.springframework.boot'                    version '2.6.1'
+        id 'io.spring.dependency-management'             version '1.0.11.RELEASE'
+
+        id 'com.github.hauner.jarTest'                   version '1.0.1'
+
+        id 'com.github.maiflai.scalatest'                version '0.31'
+        id 'com.bmuschko.docker-spring-boot-application' version '7.1.0'
+
+        id 'org.ajoberstar.grgit'                        version '4.1.1'
+    }
+}
+
+rootProject.name = 'spring-mongo-graphql'

@@ -1,0 +1,22 @@
+dependencies {
+//    implementation group: 'com.google.guava',   name: 'guava',             version: project.ext.get('google.guava.version')
+    implementation group: 'org.apache.commons', name: 'commons-lang3',     version: project.ext.get('apache.commons.lang.version')
+    implementation group: 'org.apache.commons', name: 'commons-csv',       version: project.ext.get('apache.commons.csv.version')
+
+    implementation group: 'commons-net',        name: 'commons-net',       version: project.ext.get('commons.net.version')
+    implementation group: 'commons-codec',      name: 'commons-codec',     version: project.ext.get('commons.codec.version')
+    implementation group: 'commons-validator',  name: 'commons-validator', version: project.ext.get('commons.validator.version')
+    implementation group: 'commons-io',         name: 'commons-io',        version: project.ext.get('commons.io.version')
+
+    implementation group: 'org.bouncycastle',   name: 'bcmail-jdk15on',    version: project.ext.get('bouncycastle.version')
+
+    implementation group: 'javax.inject',       name: 'javax.inject',      version: '1'
+    implementation group: 'com.sun.mail',       name: 'javax.mail',        version: '1.6.2'
+
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    runtimeOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+
+    // https://mvnrepository.com/artifact/org.passay/passay
+    implementation group: 'org.passay', name: 'passay', version: '1.6.1'
+
+}

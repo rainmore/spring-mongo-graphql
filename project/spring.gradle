@@ -1,0 +1,34 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-autoconfigure')
+    implementation('org.springframework.data:spring-data-mongodb')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-security')
+    implementation('org.springframework.boot:spring-boot-starter-tomcat')
+    implementation('org.springframework.boot:spring-boot-starter-logging')
+
+    implementation('org.springframework.integration:spring-integration-mail')
+
+    developmentOnly('org.springframework.boot:spring-boot-devtools')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+// debug
+bootRun {
+    shouldRunAfter clean, processResources
+    jvmArgs += "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+
+    if (System.env.WYTN_ENV) {
+        environment.SPRING_PROFILES_ACTIVE = System.env.WYTN_ENV
+    }
+}
