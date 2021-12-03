@@ -1,4 +1,4 @@
-package au.com.rainmore.centus.modules.regions
+package au.com.rainmore.centus.modules.regions.services
 
 import au.com.rainmore.centus.models.Region
 import org.springframework.data.mongodb.repository.MongoRepository

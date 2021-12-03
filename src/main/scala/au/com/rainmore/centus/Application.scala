@@ -1,7 +1,7 @@
 package au.com.rainmore.centus
 
 import au.com.rainmore.centus.models.{QRegion, Region}
-import au.com.rainmore.centus.modules.regions.RegionRepository
+import au.com.rainmore.centus.modules.regions.services.RegionRepository
 import org.springframework.boot.{CommandLineRunner, SpringApplication}
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
