@@ -1,0 +1,4 @@
+dependencies {
+    implementation group: 'com.graphql-java-kickstart',  name: 'graphql-spring-boot-starter', version: project.ext.get('graphql.spring.boot.version')
+    implementation group: 'com.graphql-java-kickstart',  name: 'graphql-java-tools',          version: project.ext.get('graphql.java.tools.version')
+}
