@@ -17,7 +17,7 @@ spring:
 
   data:
     mongodb:
-      database: webupdate
+      database: spring
       host: localhost
 
 # Logging

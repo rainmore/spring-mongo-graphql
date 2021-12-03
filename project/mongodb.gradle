@@ -1,12 +1,10 @@
 dependencies {
-    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
-
     implementation group: 'org.mongodb', name: 'mongodb-driver-core', version: project.ext.get('mongodb.version')
     implementation group: 'org.mongodb', name: 'mongodb-driver-sync', version: project.ext.get('mongodb.version')
     implementation group: 'org.mongodb', name: 'mongodb-driver-reactivestreams', version: project.ext.get('mongodb.version')
 
 
     annotationProcessor group: 'com.querydsl', name: 'querydsl-apt',   version: project.ext.get('querydsl.version') , classifier: 'general'
-//    implementation group: 'com.querydsl', name: 'querydsl-apt',   version: project.ext.get('querydsl.version') , classifier: 'general'
     implementation group: 'com.querydsl', name: 'querydsl-mongodb',   version: project.ext.get('querydsl.version')
+
 }
