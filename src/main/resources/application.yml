@@ -1,0 +1,25 @@
+spring:
+  main:
+    banner-mode: console
+    log-startup-info: false
+
+  output:
+    ansi:
+      enabled: detect
+
+  devtools:
+    add-properties: false
+    livereload:
+      enabled: false
+    restart:
+      enabled: false
+
+  data:
+    mongodb:
+      database: centus
+      host: localhost
+
+# Logging
+logging:
+  level:
+    root: WARN
