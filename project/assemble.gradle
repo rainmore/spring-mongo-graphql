@@ -1,0 +1,35 @@
+apply plugin: 'java-library'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+ext.javaLintArgs = [
+    '-Xlint:all',
+    '-Xlint:-deprecation',
+    '-Xlint:-path',
+    '-Xlint:-serial'
+]
+
+ext.sharedManifest = manifest {
+    attributes(
+        'Implementation-Title':   project.name,
+        'Implementation-Version': project.version,
+        'Built-JDK':              System.getProperty('java.version'),
+        'Built-By':               System.getProperty('user.name'),
+        'Built-Date':             new Date()
+    )
+
+    if (pluginManager.hasPlugin('application') && application.mainClass.isPresent()) {
+        attributes 'Main-Class': application.mainClass.get()
+    }
+}
+
+jar {
+    manifest = project.manifest { from sharedManifest }
+}
+
+tasks.withType(JavaCompile) {
+    options.incremental = true
+    options.deprecation = false
+    options.compilerArgs += project.javaLintArgs
+}
