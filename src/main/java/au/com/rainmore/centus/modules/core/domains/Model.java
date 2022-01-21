@@ -1,4 +1,4 @@
-package au.com.rainmore.centus.modules.core;
+package au.com.rainmore.centus.modules.core.domains;
 
 import java.io.Serializable;
 
