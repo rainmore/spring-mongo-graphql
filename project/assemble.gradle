@@ -19,8 +19,8 @@ ext.sharedManifest = manifest {
         'Built-Date':             new Date()
     )
 
-    if (pluginManager.hasPlugin('application') && application.mainClass.isPresent()) {
-        attributes 'Main-Class': application.mainClass.get()
+    if (pluginManager.hasPlugin('application') && application.getMainClass().isPresent()) {
+        attributes 'Main-Class': application.getMainClass().get()
     }
 }
 
