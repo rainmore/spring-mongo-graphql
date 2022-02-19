@@ -23,6 +23,11 @@ allprojects {
     }
 }
 
+tasks.named<Wrapper>("wrapper") {
+    distributionType = Wrapper.DistributionType.ALL
+    gradleVersion = project.properties["gradleVersion"] as String
+}
+
 application {
     mainClass.set(listOf(project.group.toString(), project.name, "Application").joinToString("."))
 }
