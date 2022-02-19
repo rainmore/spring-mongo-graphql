@@ -7,6 +7,7 @@ import com.querydsl.core.annotations.QueryEntity;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class Category implements Model, HasId, HasName {
     public static final String COLLECTION_NAME = "cmsCategories";
 
     private String        id;
+    @Indexed
     private String        name;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
