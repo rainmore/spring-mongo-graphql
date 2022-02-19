@@ -50,7 +50,7 @@ dependencyResolutionManagement {
             version("hibernate-core", "5.6.4.Final")
             version("hibernate-validator", "6.2.0.Final")
             version("querydsl", "5.0.0")
-            version("mongodb", "4.5.0")
+            version("mongodb", "4.4.2")
 
             // Graphql
             version("graphql-spring-boot", "12.0.0")
