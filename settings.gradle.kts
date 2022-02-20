@@ -24,13 +24,13 @@ dependencyResolutionManagement {
             version("plugin-spring-dependency-management", "1.0.11.RELEASE")
             version("plugin-jarTest", "1.0.1")
             version("plugin-git", "4.1.1")
-            version("plugin-serenity", "3.1.15")
 
             version("plugin-scalatest", "0.31")
             version("plugin-shadow", "7.0.0")
 
             // Dependencies: Scala
             version("scala-library", "2.13.8")
+            version("scala3-library", "3.1.1")
             version("scala-modules-java8-compat", "1.0.2")
 
             // Dependencies: Typesafe
@@ -88,13 +88,16 @@ dependencyResolutionManagement {
             version("edi-unedifact", "1.4")
 
             // Testing
+            version("junit-jupiter", "5.8.2")
+            version("assertj-core", "3.22.0")
+
             version("scalactic", "3.2.11")
             version("scalatest", "3.2.11")
             version("scalatest-plus", "3.2.11.0")
             // Do not upgrade these versions unless ScalaTest is updated
             version("flexmark-scalaTest", "0.62.2")
             version("jfairy", "0.6.2")
-            version("mockito", "4.0.0")
+            version("mockito", "4.2.0")
 
             // Plugins
             plugin("git", "org.ajoberstar.grgit").versionRef("plugin-git")
@@ -104,10 +107,10 @@ dependencyResolutionManagement {
             plugin("shadow", "com.github.johnrengelman.shadow").versionRef("plugin-shadow")
             plugin("spring-boot", "org.springframework.boot").versionRef("plugin-spring-boot")
             plugin("spring-dependency-management", "io.spring.dependency-management").versionRef("plugin-spring-dependency-management")
-            plugin("serenity", "net.serenity-bdd.serenity-gradle-plugin").versionRef("plugin-serenity")
 
             // Scala
             library("scala-library", "org.scala-lang", "scala-library").versionRef("scala-library")
+            library("scala3-library", "org.scala-lang", scalaArtifact("scala3-library")).versionRef("scala3-library")
             library("scala-java8-compat", "org.scala-lang.modules", scalaArtifact("scala-java8-compat")).versionRef("scala-modules-java8-compat")
 
             library("typesafe-config", "com.typesafe", "config").versionRef("typesafe-config")
@@ -187,14 +190,21 @@ dependencyResolutionManagement {
             library("edi-unedifact-d99b-binding", "org.milyn.edi.unedifact", "d99b-binding").versionRef("edi-unedifact")
 
             // Test
+            library("junit-jupiter", "org.junit.jupiter", "junit-jupiter").versionRef("junit-jupiter")
+            library("junit-jupiter-api", "org.junit.jupiter", "junit-jupiter-api").versionRef("junit-jupiter")
+            library("junit-jupiter-params", "org.junit.jupiter", "junit-jupiter-params").versionRef("junit-jupiter")
+            library("assertj-core", "org.assertj", "assertj-core").versionRef("assertj-core")
+
             library("scalactic", "org.scalactic", scalaArtifact("scalactic")).versionRef("scalactic")
             library("scalatest", "org.scalatest", scalaArtifact("scalatest")).versionRef("scalatest")
             library("scalatest-plus-mockito", "org.scalatestplus", scalaArtifact("mockito-3-12")).versionRef("scalatest-plus")
+            library("scalatest-plus-mockito-4-2", "org.scalatestplus", scalaArtifact("mockito-4-2")).versionRef("scalatest-plus")
             library("flexmark-all-scalaTest", "com.vladsch.flexmark", "flexmark-all").versionRef("flexmark-scalaTest")
             library("jfairy", "com.devskiller", "jfairy").versionRef("jfairy")
 
             // Bundles
             bundle("scala2", listOf("scala-library", "scala-java8-compat"))
+            bundle("scala", listOf("scala3-library", "scala-java8-compat"))
             bundle("logging", listOf("slf4j-api", "slf4j-log4j-over-slf4j", "logback-classic", "logback-core", "typesafe-logging"))
             bundle("logging-java", listOf("slf4j-api", "slf4j-log4j-over-slf4j", "logback-classic", "logback-core"))
             bundle("hibernate", listOf("hibernate-core", "hibernate-entitymanager", "hibernate-java8", "hibernate-validator", "javax-validation-api"))
@@ -204,6 +214,8 @@ dependencyResolutionManagement {
             bundle("jackson-mongodb", listOf("jackson-core", "jackson-datatype-jdk8", "jackson-datatype-jsr310"))
             bundle("graphql", listOf("graphql-spring-boot-starter", "graphql-java-tools"))
 
+            bundle("scalatest", listOf("scalactic", "scalatest", "scalatest-plus-mockito-4-2", "typesafe-logging"))
+            bundle("junit-jupiter", listOf("junit-jupiter", "junit-jupiter-api", "junit-jupiter-params", "assertj-core"))
         }
     }
 }

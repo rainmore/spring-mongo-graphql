@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.git)
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.dependency.management)
-    alias(libs.plugins.serenity)
 
     idea
     application
@@ -42,7 +41,7 @@ apply(from = configDir.resolve("assemble.gradle").toString())
 //apply(from = configDir.resolve("misc.gradle").toString())
 //apply(from = configDir.resolve("json.gradle").toString())
 apply(from = configDir.resolve("spring.gradle").toString())
-apply(from = configDir.resolve("test.gradle").toString())
+//apply(from = configDir.resolve("test.gradle").toString())
 
 
 dependencies {
@@ -68,4 +67,13 @@ dependencies {
     implementation(libs.bundles.logging.java)
 
     implementation(libs.bundles.graphql)
+
+    testImplementation(libs.bundles.junit.jupiter)
+    testImplementation(libs.jfairy)
+}
+
+tasks.test {
+    useJUnitPlatform()
+    reports.html.required.set(true)
+    testLogging.showStandardStreams = true
 }
