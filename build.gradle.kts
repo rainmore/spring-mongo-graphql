@@ -34,14 +34,14 @@ application {
     mainClass.set(listOf(project.group.toString(), project.name, "Application").joinToString("."))
 }
 
+configurations.all {
+    exclude("org.apache.logging.log4j:*")
+}
+
 val configDir: Path by extra(projectDir.toPath().resolve("project"))
 
 apply(from = configDir.resolve("assemble.gradle").toString())
-//apply(from = configDir.resolve("logging.gradle").toString())
-//apply(from = configDir.resolve("misc.gradle").toString())
-//apply(from = configDir.resolve("json.gradle").toString())
 apply(from = configDir.resolve("spring.gradle").toString())
-//apply(from = configDir.resolve("test.gradle").toString())
 
 
 dependencies {

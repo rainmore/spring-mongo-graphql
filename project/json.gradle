@@ -1,8 +1,0 @@
-dependencies {
-    implementation group: 'com.fasterxml.jackson.core',     name: 'jackson-core',                version: project.ext.get('jackson.version')
-
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8',       version: project.ext.get('jackson.version')
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310',     version: project.ext.get('jackson.version')
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hibernate5', version: project.ext.get('jackson.version')
-
-}
