@@ -1,0 +1,18 @@
+spring:
+  main:
+    log-startup-info: true
+
+  output:
+    ansi:
+      enabled: always
+
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+
+  data:
+    mongodb:
+      database: centus-dev
+      host: localhost
